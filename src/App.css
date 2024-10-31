@@ -1,99 +1,130 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-} */
-/* Основное поле */
 .game-field {
-  background-image: url('./assets/background.jpg');
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background: #f0f8ff; */
+  background: #f0f8ff;
+  background-image: url('/src/assets/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-/* Круг игроков */
-.players-circle {
-  position: relative;
-  width: 500px;
-  height: 500px;
+/* .players-circle {
+  display: grid;
+  width: 100%;
+  height: 70vh;
+  justify-content: space-around;
+  gap: 10px;
+  grid-template-areas: 'ten one two'
+                          'nine none three'
+                          'eight none four'
+                          'seven six five'
 }
 
-/* Стили для каждого игрока */
 .player-circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 20vw;
+  height: 20vw;
   overflow: hidden;
-  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 0 5px 5px rgb(208, 208, 208);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* Подсветка активного и целевого игрока */
+.one {
+  grid-area: one;
+}
+
+.two {
+  grid-area: two;
+}
+
+.three {
+  grid-area: three;
+}
+
+.four {
+  grid-area: four;
+}
+
+.five {
+  grid-area: five;
+}
+
+.six {
+  grid-area: six;
+}
+
+.seven {
+  grid-area: seven;
+}
+
+.eight {
+  grid-area: eight;
+}
+
+.nine {
+  grid-area: nine;
+}
+
+.ten {
+  grid-area: ten;
+}
+
+.player-circle span{
+  text-align: center;
+  margin: 0 auto;
+}
+
+.player-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;	
+}
+
 .player-circle.active {
-  box-shadow: 0 0 10px 5px yellow;
-}
-.player-circle.target {
-  box-shadow: 0 0 10px 5px red;
+  box-shadow: 0 0 30px 20px rgb(254, 254, 183);
 }
 
-/* Бутылка */
+.player-circle.target {
+  box-shadow: 0 0 30px 20px rgb(247, 0, 255);
+}
+
+.player-circle.target.kissing {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  top: 25vh;
+  animation: flyTarget 3s;
+  z-index: 5;
+}
+
+.player-circle.active.kissing {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  top: 25vh;
+  transition-duration: 5s;
+  animation: flyActive 3s;
+  z-index: 5;
+} */
+
 .bottle-container {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 180px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .bottle {
-  width: 60px;
-  height: 60px;
-  /* background: #32cd32; */
-  border-radius: 10%;
+  width: 120px;
+  height: 120px;
   cursor: pointer;
   background-image: url(./assets/Bottle.png);
   background-size: contain;
@@ -101,11 +132,220 @@
   background-position: center;
 }
 
-/* Счётчик поцелуев */
 .kiss-counter {
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 40px;
   font-size: 24px;
-  color: #333;
+  color: #f6f5f5;
+  background-color: #333;
+  padding: 8px 18px;
+  border-radius: 24px;
+  border: 2px solid #f0f8ff;
+  box-shadow: 0 0 5px 5px rgb(208, 208, 208);
 }
+
+.countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: rgba(191, 5, 5, 0.775);
+  z-index: 5;
+  animation: pulse 1s infinite;
+}
+
+.kiss-image {
+  position: absolute;
+  height: 0px;
+  width: 0px;
+}
+
+.kiss-visible {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100px;
+  width: 100px;
+  animation: kisser 3s infinite;
+  z-index: 10;
+}
+
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+  }
+  70% {
+      transform: scale(5);
+      opacity: 0.7;
+  }
+  90% {
+    transform: scale(7);
+    opacity: 0.6;
+  }
+  100% {
+      transform: scale(9);
+      opacity: 0.1;
+  }
+}
+
+@keyframes kisser {
+  0% {
+      transform: scale(1);
+  }
+  25% {
+      transform: scale(1.6);
+      /* opacity: 0.7; */
+  }
+  50% {
+    transform: scale(2);
+    opacity: 0.8;
+  }
+  75% {
+      transform: scale(2.5);
+      opacity: 0.1;
+  }
+}
+
+@keyframes flyActive {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+      transform: scale(2);
+      opacity: 0.7;
+  }
+}
+
+@keyframes flyTarget {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  75% {
+    transform: scale(1.6);
+  }
+  100% {
+      transform: scale(2);
+      opacity: 0.7;
+  }
+}
+
+@media (min-width: 540px) { 
+  .players-circle {
+      display: grid;
+      width: 600px;
+      height: 70vh;
+      justify-content: space-around;
+      gap: 10px;
+      grid-template-areas: 'ten one two'
+                              'nine none three'
+                              'eight none four'
+                              'seven six five';
+  }
+
+  .player-circle {
+    width: 108px;
+    height: 108px;
+    overflow: hidden;
+    box-shadow: 0 0 5px 5px rgb(208, 208, 208);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+ }
+
+ @media (max-width: 690px) {
+  .player-circle.target.kissing {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      top: 25vh;
+      left: 4vh;
+      animation: flyTarget 3s;
+      z-index: 5;
+    }
+  
+    .player-circle.active.kissing {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      top: 25vh;
+      right: 4vh;
+      transition-duration: 5s;
+      animation: flyActive 3s;
+      z-index: 5;
+    }
+ }
+
+ @media (max-width: 780px) {
+  .player-circle.target.kissing {
+      left: 10vh;
+    }
+  
+    .player-circle.active.kissing {
+      right: 10vh;
+    }
+ }
+
+ @media (max-width: 900px) {
+  .player-circle.target.kissing {
+      left: 30vh;
+    }
+  
+    .player-circle.active.kissing {
+      right: 30vh;
+    }
+ }
+
+ @media (max-width: 1111px) {
+  .player-circle.target.kissing {
+      left: 30%;
+    }
+  
+    .player-circle.active.kissing {
+      right: 30%;
+    }
+ }
+
+ @media (max-width: 1400px) {
+  .player-circle.target.kissing {
+      left: 35%;
+    }
+  
+    .player-circle.active.kissing {
+      right: 35%;
+    }
+ }
+
+ @media (max-width: 540px) {
+  .player-circle.target.kissing {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: 25vh;
+    left: 4vh;
+    animation: flyTarget 3s;
+    z-index: 5;
+  }
+
+  .player-circle.active.kissing {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: 25vh;
+    right: 4vh;
+    transition-duration: 5s;
+    animation: flyActive 3s;
+    z-index: 5;
+  }
+
+ }

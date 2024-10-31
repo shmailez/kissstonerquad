@@ -329,6 +329,52 @@
         overflow: hidden;
       }
       
+      .player-circle.target.kissing {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        top: 25vh;
+        left: 4vh;
+        /* transition-duration: 5s; */
+        animation: flyTarget 3s;
+        z-index: 5;
+      }
+    
+      .player-circle.active.kissing {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        top: 25vh;
+        right: 4vh;
+        transition-duration: 5s;
+        animation: flyActive 3s;
+        z-index: 5;
+      }
+
+   }
+
+   @media (max-width: 690px) {
+    .player-circle.target.kissing {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        top: 25vh;
+        left: 4vh;
+        /* transition-duration: 5s; */
+        animation: flyTarget 3s;
+        z-index: 5;
+      }
+    
+      .player-circle.active.kissing {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        top: 25vh;
+        right: 4vh;
+        transition-duration: 5s;
+        animation: flyActive 3s;
+        z-index: 5;
+      }
    }
 
    @media (max-width: 780px) {
@@ -349,6 +395,30 @@
         height: 120px;
         top: 25vh;
         right: 10vh;
+        transition-duration: 5s;
+        animation: flyActive 3s;
+        z-index: 5;
+      }
+   }
+
+   @media (max-width: 900px) {
+    .player-circle.target.kissing {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        top: 25vh;
+        left: 25vh;
+        /* transition-duration: 5s; */
+        animation: flyTarget 3s;
+        z-index: 5;
+      }
+    
+      .player-circle.active.kissing {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        top: 25vh;
+        right: 25vh;
         transition-duration: 5s;
         animation: flyActive 3s;
         z-index: 5;

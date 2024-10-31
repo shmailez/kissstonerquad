@@ -150,7 +150,7 @@ const getRandomPlayerIndex = (excludeIndex, maxPlayers) => {
   return (
     <div className="game-field">
       <div className="kiss-counter">Поцелуев: {kissCounter}</div>
-      <div><img className={`kiss-image ${isKissing && 'kiss-visible'}`} src={img} alt="" /></div>
+      <img className={`kiss-image ${isKissing && 'kiss-visible'}`} src={img} alt="" />
       {isCountdownActive && <div className="countdown">{countdown}</div>}
       <div className="players-circle">
           {players.map((player, index) => {
